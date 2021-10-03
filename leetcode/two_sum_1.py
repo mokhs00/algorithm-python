@@ -10,10 +10,9 @@ from typing import List
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         map = {}
-        for i, num in enumerate(nums):
-            map[num] = i
 
         for i, num in enumerate(nums):
             index = target - num
             if index in map and i != map[index]:
                 return [i, map[index]]
+            map[num] = i
