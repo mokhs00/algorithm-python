@@ -10,7 +10,6 @@ class ListNode:
 
 class Solution:
     def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        list: List = []
 
         if (not l1) or (l2 and l1.val > l2.val):
             l1, l2 = l2, l1
