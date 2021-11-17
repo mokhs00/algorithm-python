@@ -1,3 +1,4 @@
+import itertools
 from typing import List
 
 
@@ -42,3 +43,13 @@ class Solution:
         dfs(nums)
 
         return result
+
+    def permute_3(self, nums: List[int]) -> List[List[int]]:
+        '''
+        구현의 효율성, 성능을 위한 itertools 사용.
+        효율적으로 설계된 C 라이브러리이므로 속도에 이점이 있음.
+        + 직접 구현하는 것보다 버그 발생 가능성 낮음
+
+        => 실무에서는 사용하지 않을 이유가 없다.
+        '''
+        return list(itertools.permutations(nums))
