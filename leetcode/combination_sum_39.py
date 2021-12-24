@@ -3,19 +3,19 @@ from typing import List
 
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-
         result = []
 
-        def dfs(current_sum, index, path):
+        def dfs(arr, index, sum):
 
-            if current_sum > target:
+            if sum > target:
                 return
-            if current_sum == target:
-                result.append(path)
+            if sum == target:
+                result.append(arr)
+                return
 
             for i in range(index, len(candidates)):
-                dfs(current_sum + candidates[i], i, path + [candidates[i]])
+                dfs(arr + [candidates[i]], i, sum + candidates[i])
 
-        dfs(0, 0, [])
+        dfs([], 0, 0)
 
         return result
