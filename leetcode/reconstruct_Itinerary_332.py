@@ -23,3 +23,18 @@ class Solution:
         dfs('JFK')
 
         return result[::-1]
+
+    def findItinerary_use_stack(self, tickets: List[List[str]]) -> List[str]:
+        graph = collections.defaultdict(collections.deque)
+
+        for a, b in sorted(tickets):
+            graph[a].append(b)
+
+        route, stack = [], ['JFK']
+
+        while stack:
+            while graph[stack[-1]]:
+                stack.append(graph[stack[-1]].popleft())
+            route.append(stack.pop())
+
+        return route[::-1]
