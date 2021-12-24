@@ -3,18 +3,23 @@ from typing import List
 
 
 class Solution:
+    """
+    result.append()할 때 재귀 흐름을 이해하고 경로가 어떻게 쌓일지 예측하자.
+    """
+
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        graph = collections.defaultdict(list)
+        result = []
+        default_dict = collections.defaultdict(collections.deque)
 
-        for i, j in sorted(tickets, reverse=True):
-            graph[i].append(j)
+        # place graph
+        for a, b in sorted(tickets):
+            default_dict[a].append(b)
 
-        route = []
-
-        def dfs(start):
-            while graph[start]:
-                dfs(graph[start].pop())
-            route.append(start)
+        def dfs(current):
+            while default_dict[current]:
+                dfs(default_dict[current].popleft())
+            result.append(current)
 
         dfs('JFK')
-        return route[::-1]
+
+        return result[::-1]
